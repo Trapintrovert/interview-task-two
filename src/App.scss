@@ -1,0 +1,83 @@
+.App{
+  background: #F5F5F5;
+}
+
+.login {
+  padding: 3rem 0rem;
+  font-family: 'Poppins', sans-serif;
+
+  &__content{
+    background-color: #ffffff;
+    margin: auto;
+    max-width: 40%;
+    padding: 5rem 2rem;
+    border-radius: 1rem;
+    
+  }
+
+  &__title{
+    font-size: 28px;
+    text-align: center;
+    padding-bottom: 5px;
+    font-weight: bold;
+  }
+
+  &__text{
+    text-align: center;
+    font-weight: bold;
+  }
+
+  &__form{
+
+    .form-control{
+      background: #F5F5F5;
+      border: 0px;
+      font-weight: 400;
+    }
+
+    .btn{
+      width: 100%;
+      background: #FFE6C5;
+      color: #FFAA41;
+      border: 0px;
+    }
+
+    .btn:hover{
+      width: 100%;
+      background: orange;
+      color: #ffffff;
+      border: 0px;
+    }
+
+
+  }
+
+  &__forgot--password{
+
+    a{
+      float: right;
+      color: orange;
+      padding: 1rem 0rem;
+    }
+
+    a:hover{
+      color: orange;
+      padding: 1rem 0rem;
+    }
+ }
+   &__signup-message{
+     text-align: center;
+     margin-top: 1rem;
+
+     a{
+      color: orange;
+     }
+
+     a:hover{
+      color: orange;
+     }
+   }
+
+  
+
+}
