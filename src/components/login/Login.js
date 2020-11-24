@@ -2,6 +2,7 @@ import React,{useState} from 'react'
 import {Row, Col, FormGroup, Button} from 'reactstrap'
 
 import FormInput from '../../components/form-input/FormInput'
+import useValidator from '../validateHook/useValidator'
 
 const initialState = {
     email: "",
@@ -9,6 +10,7 @@ const initialState = {
 }
 const Login = () => {
     const [formData, setFormData] = useState(initialState)
+    const [validator, showValidatorMessage] = useValidator();
     
     const{email, password }= formData
     const handleChange = (e) => {
@@ -16,6 +18,16 @@ const Login = () => {
 
         setFormData({ ...formData, [name] : value})
 
+    }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        
+        if(validator.allValid()){
+            console.log(formData)
+        }else{
+            showValidatorMessage(true)
+        }
     }
 
     return (
@@ -26,7 +38,7 @@ const Login = () => {
                         <h2 className="login__title">Welcome Back</h2>
                         <p className="login__text">Login in Here</p>
                         <div className="login__form">
-                        <form>
+                        <form onSubmit={handleSubmit}>
                             <FormGroup>
                                 <FormInput
                                     type='email'
@@ -36,6 +48,15 @@ const Login = () => {
                                     handleChange={handleChange}
                                     placeholder="Email Address"
                                 />
+
+                                {
+                                    validator.message('email', email, 'required|email', {
+                                        message: {
+                                            required: 'Required'
+                                        },
+                                        className: 'text-danger'
+                                    })
+                                }
                             </FormGroup>
                             <FormGroup>
                                 <FormInput
@@ -46,6 +67,14 @@ const Login = () => {
                                     handleChange={handleChange}
                                     placeholder="****"
                                 />
+                                {
+                                    validator.message('password', password, 'required|min:3', {
+                                        message: {
+                                            required: 'Required'
+                                        },
+                                        className: 'text-danger'
+                                    })
+                                }
                             </FormGroup>
                             <span className="login__forgot--password">
                                 <a href="#." >Forgot Password</a>
